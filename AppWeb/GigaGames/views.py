@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JuegoForm
 from .models import Juego
-from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -46,7 +45,46 @@ def agregar_juego(request):
             data["mensaje"] = "Juego agregado"
         else:
             data["mensaje"] = "Error"
-            data["form_contacto"] = formulario
+            data["form"] = formulario
 
     return render(request, "mantenedor/juego/agregar.html", data)
 
+def modificar_juego_lista(request):
+
+    juegos = Juego.objects.all()
+
+    data = {
+        'juegos' : juegos
+    }
+
+    return render(request, "mantenedor/juego/listado_juegos.html", data)
+
+
+def modificar_juego(request, idjuego):
+
+    juego = get_object_or_404(Juego, id = idjuego)
+
+    data = {
+        "form_juego": JuegoForm(instance=juego)
+    } 
+
+    if request.method == "POST":
+        formulario = JuegoForm(data=request.POST, instance=juego, files=request.FILES)
+
+        if formulario.is_valid:
+            formulario.save()
+            return redirect(to="modificar_juego_lista")
+        else:
+            data["mensaje"] = "Error"
+            data["form"] = formulario
+
+    return render(request, "mantenedor/juego/modificar.html", data)
+
+
+def eliminar_juego(request, idjuego):
+
+    juego = get_object_or_404(Juego, id = idjuego)
+
+    juego.delete()
+
+    return redirect(to="modificar_juego_lista")
