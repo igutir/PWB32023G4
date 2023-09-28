@@ -97,13 +97,13 @@
 
         {% if messages %}
             {% for mensaje in messages %}
-                <script>
+               {% comment %}  <script>
                     Swal.fire({
                         "title": "Mensaje",
                         "text": "{{mensaje}}",
                         "icon": "succes"
                     })
-                </script>
+                </script> {% endcomment %}
             {% endfor %}
         {% endif %}
 

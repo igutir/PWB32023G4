@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 
 {% block contenido %}
+
+<script>
+function eliminarJuego(id){
+
+    Swal.fire({
+        "title": "Advertencia",
+        "text": "¿Estás seguro que deseas eliminar este juego?",
+        "icon": "warning",
+        "showCancelButton": true,
+        "cancelButtonText": "No, cancelar",
+        "confirmButtonText": "Si, eliminar"
+    }).then(function(result){
+        if(result.isConfirmed){
+            window.location.href = "d/"+id+"/";
+        }
+    })
+}
+</script>
+
+
 <br>
     <div class="container">
         <h1>
@@ -33,7 +53,7 @@
                 <td>{{ juego.Categoria }}</td>
                 <td>{{ juego.compania }}</td>
                 <td align="center"><a href="{% url 'modificar_juego' idjuego=juego.id %}" class="btn btn-warning">M</a></td>
-                <td align="center"><a href="{% url 'eliminar_juego' idjuego=juego.id %}" class="btn btn-danger">E</a></td>
+                <td align="center"><a href="#" onclick="eliminarJuego('{{ juego.id }}')" class="btn btn-danger">E</a></td>
             </tr>
             {% endfor %}
         </tbody>

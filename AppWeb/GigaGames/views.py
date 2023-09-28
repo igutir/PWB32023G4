@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, permission_required
+
 from django.contrib.auth.models import User, Group
+
 from django.contrib import messages
+
 from .forms import JuegoForm
 from .models import Juego
+
 
 # Create your views here.
 
 
 def home(request):
 
-    messages.success(request, "Alo ola XD")
+    # messages.success(request, "msj")
+
+    request.session["mensaje"] = "Hola"
 
     return render(request, "index.html")
 
@@ -37,6 +45,8 @@ def juego(request, id):
 
     return render(request, "juego.html", data)
 
+@login_required(login_url="/accounts/login/")
+@permission_required(['GigaGames.add_juego'], login_url="/accounts/login/")
 def agregar_juego(request):
 
     data = {
@@ -56,6 +66,8 @@ def agregar_juego(request):
 
     return render(request, "mantenedor/juego/agregar.html", data)
 
+@login_required(login_url="/accounts/login/")
+@permission_required(['GigaGames.change_juego', 'GigaGames.delete_juego'], login_url="/accounts/login/")
 def modificar_juego_lista(request):
 
     juegos = Juego.objects.all()
@@ -66,7 +78,8 @@ def modificar_juego_lista(request):
 
     return render(request, "mantenedor/juego/listado_juegos.html", data)
 
-
+@login_required(login_url="/accounts/login/")
+@permission_required(['GigaGames.change_juego'], login_url="/accounts/login/")
 def modificar_juego(request, idjuego):
 
     juego = get_object_or_404(Juego, id = idjuego)
@@ -87,7 +100,8 @@ def modificar_juego(request, idjuego):
 
     return render(request, "mantenedor/juego/modificar.html", data)
 
-
+@login_required(login_url="/accounts/login/")
+@permission_required(['GigaGames.delete_juego'], login_url="/accounts/login/")
 def eliminar_juego(request, idjuego):
 
     juego = get_object_or_404(Juego, id = idjuego)
