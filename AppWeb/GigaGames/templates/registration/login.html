@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+
+<br>
+    <div class="d-flex justify-content-center">
+        <h1>
+            Iniciar Sesi&oacute;n
+        </h1>
+    </div>
+<br>
+
+<div class="d-flex justify-content-center">
+    <div class="row">
+        <form class="col-12 col-sm-12 col-lg-12" id="login" action="" method="POST">
+            {% csrf_token %}
+            {{form | crispy}}
+            <hr class="my-4">
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary m-2">Iniciar Sesion</button>
+            </div>
+        </form>
+        <hr class="my-4">
+
+    </div>
+</div>
+
+{% endblock %}
