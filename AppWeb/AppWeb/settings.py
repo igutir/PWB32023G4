@@ -29,21 +29,29 @@ ALLOWED_HOSTS = []
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
-LOGIN_REDIRECT_URL = '/login_usuario'
+LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/'
 
+""" 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
+ """
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'GigaGames',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'GigaGames',
-    'crispy_forms',
-    'crispy_bootstrap5',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -63,7 +71,7 @@ ROOT_URLCONF = 'AppWeb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +139,18 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'login'
 
 import os
 MEDIA_URL = '/files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "files")
+
+# SMTP 
+# EMAIL_HOST = 
+# EMAIL_PORT =
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER =
+# EMAIL_HOST_PASSWORD =
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
