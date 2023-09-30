@@ -18,10 +18,17 @@ from .models import Juego
 def home(request):
 
     # messages.success(request, "msj")
+    #request.session["mensaje"] = "Hola"
 
-    request.session["mensaje"] = "Hola"
+    juegos_carrusel = Juego.objects.filter(imagen_carrusel__startswith="cover/carrusel/")
 
-    return render(request, "index.html")
+    print(juegos_carrusel)
+
+    data = {
+        'juegos' : juegos_carrusel
+    }
+
+    return render(request, "index.html", data)
 
 def categoria(request):
     return render(request, "categoria.html")
@@ -29,6 +36,8 @@ def categoria(request):
 def explorar(request):
 
     juegos = Juego.objects.all()
+
+    print(juegos)
 
     data = {
         'juegos' : juegos
@@ -45,6 +54,14 @@ def juego(request, id):
     }
 
     return render(request, "juego.html", data)
+
+
+@login_required(login_url="login/")
+@permission_required(['GigaGames.add_juego', 'GigaGames.delete_juego'], login_url="login/")
+def mantenedor_juegos(request):
+
+    return render(request, "mantenedor/juego/mantenedor_juegos.html")
+
 
 @login_required(login_url="login/")
 @permission_required(['GigaGames.add_juego'], login_url="login/")

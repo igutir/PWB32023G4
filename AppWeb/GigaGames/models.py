@@ -18,6 +18,7 @@ class Juego(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField(null=True, blank=True)
     imagen = models.ImageField(upload_to="cover", null=True, blank=True)
+    imagen_carrusel = models.ImageField(upload_to="cover/carrusel", null=True, blank=True)
     precio = models.IntegerField()
     stock = models.IntegerField()
     Categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)

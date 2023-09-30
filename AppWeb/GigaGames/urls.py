@@ -1,8 +1,19 @@
 from django.urls import path
 from .views import *
-from django.contrib.auth.views import (LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
+from django.contrib.auth.views import (LoginView, 
+                                       LogoutView, 
+                                       PasswordChangeView, 
+                                       PasswordChangeDoneView, 
+                                       PasswordResetView, 
+                                       PasswordResetDoneView, 
+                                       PasswordResetConfirmView, 
+                                       PasswordResetCompleteView)
 
-urlpatterns = [
+urlpatterns = [ 
+
+    path('', home, name="home"),
+    path('explorar/', explorar, name="explorar"),
+    path('categoria/', categoria, name="categoria"),
 
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
@@ -13,13 +24,8 @@ urlpatterns = [
     path("reset/<uidb64>/<token>/", PasswordResetConfirmView.as_view(template_name="pw/password_reset_confirm.html"), name="password_reset_confirm"),
     path("reset/done/", PasswordResetCompleteView.as_view(template_name="pw/password_reset_complete.html"), name="password_reset_complete"),
 
-    path('home/', home, name="home"),
-    path('', home, name="home"),
-    path('explorar/', explorar, name="explorar"),
-    path('categoria/', categoria, name="categoria"),
-
-
     path('j/<int:id>/', juego, name="juego"),
+    path('mantenedor/', mantenedor_juegos, name="mantenedor_juegos"),
     path('mantenedor/agregar_juego/', agregar_juego, name="agregar_juego"),
     path('mantenedor/listado_juegos/', modificar_juego_lista, name="modificar_juego_lista"),
     path('mantenedor/listado_juegos/u/<int:idjuego>/', modificar_juego, name="modificar_juego"),

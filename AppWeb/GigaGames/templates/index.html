@@ -14,22 +14,19 @@
 <!--Carrusel-->
 <div id="carouselIndex" class="carousel slide">
     <div class="carousel-inner">
+
+        {% for juego in juegos %}
+
+        { juego.id }
+
         <div class="carousel-item active">
-            <a href="eldenring.html}">
-                <img src="{% static '/img/eldenringcarousel.png'%}" class="d-block w-100" alt="..." height="600">
+            <a href="{% url 'juego' id=juego.id %}">
+                <img src="{{ juego.imagen_carrusel.url }}" class="d-block w-100" alt="..." height="600">
             </a>
         </div>
-        <div class="carousel-item">
-            <a href="darkanddarker.html">
-                <img src="{% static  '/img/darkanddarkercarousel.png'%}" class="d-block w-100" alt="..." height="600">
-            </a>
-        </div>
-        <div class="carousel-item">
-            <a href="ageofempires.html">
-                <img src="{% static  '/img/aoe2decarousel.png'%}" class="d-block w-100" alt="..." height="600">
-            </a>
-        </div>
-    </div>
+
+        {% endfor %}
+       
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndex"
         data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

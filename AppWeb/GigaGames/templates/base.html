@@ -44,17 +44,19 @@
                             <li><a class="dropdown-item" href="supervivencia.html">Supervivencia</a></li>
                         </ul>
                     </li>
-                
+
+                    {% if perms.GigaGames.add_juego %}
                     <li class="nav-item dropdown me-auto">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Usuarios
+                            Mantenedores
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="inventario.html">Inventario (Admin)</a></li>
-                            <li><a class="dropdown-item" href="profile.html">Perfil (Usuario)</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mantenedor_juegos' %}">Mantenedor Juegos</a></li>
                         </ul>
                     </li>
+                    {% endif %}
+
 
                 </ul>
 
