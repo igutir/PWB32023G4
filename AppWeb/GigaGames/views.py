@@ -1,18 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 from django.contrib.auth import authenticate, login
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.forms import UserChangeForm, UserModel
 from django.contrib.auth.decorators import login_required, permission_required
-
-import requests
-
 from django.contrib.auth.models import User, Group
-
 from django.contrib import messages
 
-from .forms import JuegoForm
+from django.views import generic
+
+from django.urls import reverse_lazy
+
+from .forms import JuegoForm, ActualizarPerfilForm, ActualizarUsuarioForm
 from .models import Juego, Categoria
 
+import requests
 
 # Create your views here.
 
@@ -203,3 +203,33 @@ def registro_usuario(request):
             data["mensaje"] = "Hubo un error"
 
     return render(request, "registration/registro.html")
+
+
+
+
+
+def editar_perfil(request):
+
+    data = {
+        "mensaje": ""
+    }
+
+    if request.method == "POST":
+        usuario_form = ActualizarUsuarioForm(request.POST, instace=request.user)
+        perfil_form = ActualizarPerfilForm(request.POST, instance=request.user.perfil)
+
+        if usuario_form.is_valid() and perfil_form.is_valid():
+            usuario_form.save()
+            perfil_form.save()
+
+            data["mensaje"] = "Datos actualizados correctamente"
+
+            return redirect(to="perfil")
+        
+    else:
+        usuario_form = ActualizarUsuarioForm(instance=request.user)
+        perfil_form = ActualizarPerfilForm(instance=request.user.perfil)
+
+    return render(request, 'registration/editar_perfil.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
+
+
