@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_api.viewsLogin import loginApi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('GigaGames.urls')),
     path('api/', include('rest_api.urls')),
+    path('loginApi/', loginApi, name='loginApi'),
 ]
 
 if settings.DEBUG:

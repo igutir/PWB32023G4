@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from GigaGames.models import Juego, Categoria
 from .serializers import JuegoSerializer, CategoriaSerializer
@@ -12,6 +15,7 @@ from .serializers import JuegoSerializer, CategoriaSerializer
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+@permission_classes((IsAuthenticated,))
 def lista_juegos(request):
     if request.method == 'GET':
         juego = Juego.objects.all()
@@ -32,6 +36,7 @@ def lista_juegos(request):
 
 @csrf_exempt
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
+@permission_classes((IsAuthenticated,))
 def vista_juegos(request, id):
     try:
         juego = Juego.objects.get(id=id)
@@ -64,6 +69,7 @@ def vista_juegos(request, id):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+@permission_classes((IsAuthenticated,))
 def lista_categorias(request):
     if request.method == 'GET':
         categoria = Categoria.objects.all()
@@ -84,6 +90,7 @@ def lista_categorias(request):
 
 @csrf_exempt
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
+@permission_classes((IsAuthenticated,))
 def vista_categorias(request, id):
     try:
         categoria = Categoria.objects.get(id=id)
