@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required, permission_required
 
+import requests
+
 from django.contrib.auth.models import User, Group
 
 from django.contrib import messages
@@ -51,6 +53,28 @@ def explorar(request):
     }
 
     return render(request, "explorar.html", data)
+
+
+
+
+
+##ejemplo para la api
+def api_rickandmorty(request):
+    url = "https://rickandmortyapi.com/api/character"
+    response = requests.get(url)
+
+    personajes = response.json().get('results',[])
+
+    context = {
+        'personajes': personajes
+
+    }
+    return render(request, 'api_rickandmorty.html', context)
+
+
+
+
+
 
 def juego(request, id):
 
