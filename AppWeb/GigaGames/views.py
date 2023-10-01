@@ -12,6 +12,7 @@ from django.urls import reverse_lazy
 from .forms import JuegoForm, ActualizarPerfilForm, ActualizarUsuarioForm
 from .models import Juego, Categoria
 
+import requests
 
 # Create your views here.
 
@@ -52,6 +53,28 @@ def explorar(request):
     }
 
     return render(request, "explorar.html", data)
+
+
+
+
+
+##ejemplo para la api
+def api_rickandmorty(request):
+    url = "https://rickandmortyapi.com/api/character"
+    response = requests.get(url)
+
+    personajes = response.json().get('results',[])
+
+    context = {
+        'personajes': personajes
+
+    }
+    return render(request, 'api_rickandmorty.html', context)
+
+
+
+
+
 
 def juego(request, id):
 

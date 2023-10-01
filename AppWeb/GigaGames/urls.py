@@ -16,6 +16,9 @@ urlpatterns = [
     path('categoria/', categoria, name="categoria"),
     path('categoria/<int:id>', categoria, name="categoria"),
 
+    ##para la api, es un ejemplo
+    path('api_rickandmorty/', api_rickandmorty, name="api_rickandmorty"),
+
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path('registro_usuario/', registro_usuario, name="registro_usuario"),
