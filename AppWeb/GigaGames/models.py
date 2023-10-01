@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=200, verbose_name='Nombre de la categoria')
+    nombre = models.CharField(max_length=200, verbose_name='Nombre de la categoria', unique=True)
 
     def __str__(self):
         return self.nombre
@@ -15,7 +15,7 @@ class Compania(models.Model):
         return self.nombre
 
 class Juego(models.Model):
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, unique=True)
     descripcion = models.TextField(null=True, blank=True)
     imagen = models.ImageField(upload_to="cover", null=True, blank=True)
     imagen_carrusel = models.ImageField(upload_to="cover/carrusel", null=True, blank=True)
