@@ -9,7 +9,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib import messages
 
 from .forms import JuegoForm
-from .models import Juego
+from .models import Juego, Categoria
 
 
 # Create your views here.
@@ -22,22 +22,29 @@ def home(request):
 
     juegos_carrusel = Juego.objects.filter(imagen_carrusel__startswith="cover/carrusel/")
 
-    print(juegos_carrusel)
-
     data = {
         'juegos' : juegos_carrusel
     }
 
     return render(request, "index.html", data)
 
-def categoria(request):
-    return render(request, "categoria.html")
+def categoria(request, id):
+
+    categoria = get_object_or_404(Categoria, id = id)
+
+    juegos_categoria = Juego.objects.filter(Categoria_id =id)
+
+    data = {
+        'categoria' : categoria,
+        'juegos_categoria' : juegos_categoria
+    }
+
+    return render(request, "categoria.html", data)
 
 def explorar(request):
 
     juegos = Juego.objects.all()
 
-    print(juegos)
 
     data = {
         'juegos' : juegos

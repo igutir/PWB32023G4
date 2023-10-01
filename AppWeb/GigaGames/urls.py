@@ -14,6 +14,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('explorar/', explorar, name="explorar"),
     path('categoria/', categoria, name="categoria"),
+    path('categoria/<int:id>', categoria, name="categoria"),
 
     path("login/", LoginView.as_view(template_name="registration/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),

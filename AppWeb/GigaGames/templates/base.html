@@ -31,17 +31,15 @@
                     <li class="nav-item me-auto" id="logo-nav-bar">
                         <a class="nav-link" href="{% url 'explorar' %}">Explorar</a>
                     </li>
+                    
                     <li class="nav-item dropdown me-auto">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Categorias
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="accion.html">Acci&oacute;n</a></li>
-                            <li><a class="dropdown-item" href="mundoabierto.html">Mundo Abierto</a></li>
-                            <li><a class="dropdown-item" href="estrategia.html">Estrategia</a></li>
-                            <li><a class="dropdown-item" href="indie.html">Indie</a></li>
-                            <li><a class="dropdown-item" href="supervivencia.html">Supervivencia</a></li>
+                            {% load custom_tags %}
+                            {% cargar_categorias %}
                         </ul>
                     </li>
 
@@ -68,6 +66,13 @@
                         <p class="nav-link">¡Bienvenido, {{ user.username }}!</p>
                     </li>
 
+
+                        {% if perms.GigaGames.add_juego %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'perfil_usuario' %}">Mi perfil</a>
+                        </li>
+                        {% endif %}
+                        
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
                     </li>
