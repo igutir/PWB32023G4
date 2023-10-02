@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ['nombre', 'apellido', 'email', 'rut', 'perfil']
+    list_display = ['nombre', 'apellido', 'email']
 
 
 # vid3 1422

@@ -12,6 +12,7 @@
 </head>
 
 {% load static %}
+{% load custom_tags %}
 
 <body id="body-dark">
     <!--Header-->
@@ -38,12 +39,11 @@
                             Categorias
                         </a>
                         <ul class="dropdown-menu">
-                            {% load custom_tags %}
                             {% cargar_categorias %}
                         </ul>
                     </li>
 
-                    {% if perms.GigaGames.add_juego %}
+                    {% if request.user|tiene_grupo:"administrador" %}
                     <li class="nav-item dropdown me-auto">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -74,9 +74,9 @@
                     </li>
 
 
-                        {% if perms.GigaGames.add_juego %}
+                        {% if request.user|tiene_grupo:"usuario" %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'perfil_usuario' %}">Mi perfil</a>
+                            <a class="nav-link" href="{% url 'editar_perfil' %}">Mi perfil</a>
                         </li>
                         {% endif %}
                         
