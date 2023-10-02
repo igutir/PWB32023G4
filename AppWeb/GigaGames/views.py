@@ -58,18 +58,12 @@ def explorar(request):
 
 
 
-##ejemplo para la api
-def api_rickandmorty(request):
-    url = "https://rickandmortyapi.com/api/character"
-    response = requests.get(url)
+##Paginas para el pokemon
+def pokedex_api(request):
+    return render(request, 'pokedex_api.html')
 
-    personajes = response.json().get('results',[])
-
-    context = {
-        'personajes': personajes
-
-    }
-    return render(request, 'api_rickandmorty.html', context)
+def quepokemoneres(request):
+    return render(request, 'quepokemoneres.html')
 
 
 

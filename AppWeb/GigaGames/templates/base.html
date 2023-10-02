@@ -57,9 +57,9 @@
 
 
 
-                    <!--para la api, es un ejemplo-->
+                    <!--para la api, es la api de pokeapi-->
                     <li class="nav-item me-auto" id="logo-nav-bar">
-                        <a class="nav-link" href="{% url 'api_rickandmorty' %}">rick and morty</a>
+                        <a class="nav-link" href="{% url 'pokedex_api' %}">POKEDEX</a>
                     </li>
 
 
@@ -76,7 +76,7 @@
 
                         {% if perms.GigaGames.add_juego %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'perfil_usuario' %}">Mi perfil</a>
+                            <a class="nav-link" href="#">Mi perfil</a>
                         </li>
                         {% endif %}
                         
