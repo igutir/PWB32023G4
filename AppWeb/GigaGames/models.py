@@ -22,7 +22,7 @@ class Juego(models.Model):
     imagen_carrusel = models.ImageField(upload_to="cover/carrusel", null=True, blank=True)
     precio = models.IntegerField()
     stock = models.IntegerField()
-    Categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
     compania = models.ForeignKey(Compania,on_delete=models.CASCADE)
     
     def __str__(self):
@@ -30,10 +30,8 @@ class Juego(models.Model):
 
 class Perfil(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE) 
-    rut = models.CharField(max_length=200, null=True, blank=True)
     telefono = models.IntegerField(null=True, blank=True)
     fecha_nacimiento = models.DateField(null=True, blank=True)
-    direccion = models.TextField(null=True, blank=True)
     
     def __str__(self):
         return str(self.user)
@@ -62,7 +60,7 @@ class Compra(models.Model):
 
 class Compra_juego(models.Model):
     compra = models.ForeignKey(Compra,on_delete=models.CASCADE)
-    Juego = models.ForeignKey(Juego,on_delete=models.CASCADE)
+    juego = models.ForeignKey(Juego,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.compra

@@ -15,7 +15,8 @@
                     <h3 class="card-title">{{ juego.nombre }}</h3>
                     <h4 class="card-subtitle">Precio: ${{ juego.precio }}</h4>
                     <p class="card-text">{{ juego.descripcion }}</p>
-                    <button type="button" class="btn btn-primary">
+
+                    <a href="{% url 'agregar_cart' juego.id %}" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-cart" viewBox="0 0 16 16">
                             <path
@@ -23,7 +24,7 @@
                             </path>
                         </svg>
                         Agregar al carrito
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

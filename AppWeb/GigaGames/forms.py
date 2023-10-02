@@ -14,7 +14,7 @@ class ActualizarUsuarioForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username', 'last_name', 'email']
 
 
 class ActualizarPerfilForm(forms.ModelForm):
@@ -24,5 +24,5 @@ class ActualizarPerfilForm(forms.ModelForm):
 
     class Meta:
         model = Perfil
-        fields = ['rut', 'telefono', 'fecha_nacimiento', 'direccion']
+        fields = ['telefono', 'fecha_nacimiento']
 

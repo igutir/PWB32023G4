@@ -1,16 +1,20 @@
+from typing import Any
+from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserChangeForm, UserModel
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 
-from django.views import generic
+from django.contrib.auth.forms import UserChangeForm
+
+from django.views.generic import UpdateView
 
 from django.urls import reverse_lazy
 
-from .forms import JuegoForm, ActualizarPerfilForm, ActualizarUsuarioForm
-from .models import Juego, Categoria
+from .forms import JuegoForm, ActualizarUsuarioForm, ActualizarPerfilForm
+from .models import Juego, Categoria, Perfil
 
 import requests
 
@@ -34,7 +38,7 @@ def categoria(request, id):
 
     categoria = get_object_or_404(Categoria, id = id)
 
-    juegos_categoria = Juego.objects.filter(Categoria_id =id)
+    juegos_categoria = Juego.objects.filter(categoria_id=id)
 
     data = {
         'categoria' : categoria,
@@ -163,6 +167,40 @@ def login_usuario(request):
 
     return render(request, "registration/login.html")
 
+def editar_perfil(request):
+
+    usuario = get_object_or_404(User, id = request.user.id)
+    perfil = get_object_or_404(Perfil, user_id = request.user.id)
+
+    print(perfil)
+
+    data = {
+        "form_user": ActualizarUsuarioForm(instance=usuario),
+        "form_profile": ActualizarPerfilForm(instance=perfil)
+    } 
+
+    if request.method == "POST":
+       
+        form_usuario = ActualizarUsuarioForm(request.POST, instance=request.user)
+        form_perfil = ActualizarPerfilForm(request.POST, instance=request.user.perfil)
+
+        if form_usuario.is_valid and form_perfil.is_valid:
+            
+            form_usuario.save()
+            form_perfil.save()
+
+
+            return redirect(to="editar_perfil")
+        else:
+
+            form_usuario = ActualizarUsuarioForm(instance=request.user)
+            form_perfil = ActualizarPerfilForm(instance=request.user.perfil)
+
+            data['form_usuario'] = form_usuario
+            data['form_perfil'] = form_perfil
+            
+    return render(request, 'registration/editar_perfil.html', data)
+
 def registro_usuario(request):
 
     data = {
@@ -197,33 +235,5 @@ def registro_usuario(request):
             data["mensaje"] = "Hubo un error"
 
     return render(request, "registration/registro.html")
-
-
-
-
-
-def editar_perfil(request):
-
-    data = {
-        "mensaje": ""
-    }
-
-    if request.method == "POST":
-        usuario_form = ActualizarUsuarioForm(request.POST, instace=request.user)
-        perfil_form = ActualizarPerfilForm(request.POST, instance=request.user.perfil)
-
-        if usuario_form.is_valid() and perfil_form.is_valid():
-            usuario_form.save()
-            perfil_form.save()
-
-            data["mensaje"] = "Datos actualizados correctamente"
-
-            return redirect(to="perfil")
-        
-    else:
-        usuario_form = ActualizarUsuarioForm(instance=request.user)
-        perfil_form = ActualizarPerfilForm(instance=request.user.perfil)
-
-    return render(request, 'registration/editar_perfil.html', {'usuario_form': usuario_form, 'perfil_form': perfil_form})
 
 

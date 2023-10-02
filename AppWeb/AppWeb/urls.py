@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('GigaGames.urls')),
     path('api/', include('rest_api.urls')),
     path('loginApi/', loginApi, name='loginApi'),
+    path('cart/', include('cart.urls')),
 ]
 
 if settings.DEBUG:
