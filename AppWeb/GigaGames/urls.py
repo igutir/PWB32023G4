@@ -6,7 +6,7 @@ urlpatterns = [
 
     path('', home, name="home"),
     path('explorar/', explorar, name="explorar"),
-    path('categoria/', categoria, name="categoria"),
+    #path('categoria/', categoria, name="categoria"),
     path('categoria/<int:id>', categoria, name="categoria"),
 
     ##para la api, es un ejemplo
@@ -22,7 +22,6 @@ urlpatterns = [
     path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name="pw/password_reset_confirm.html"), name="password_reset_confirm"),
     path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name="pw/password_reset_complete.html"), name="password_reset_complete"),
 
-   # path("perfil/", vistaMostrarPerfil.as_view(), name="perfil"),
     path("perfil/", editar_perfil, name="editar_perfil"),
     #path("editarperfil/", ProfileUpdate.as_view(), name="editar_perfil_usuario"),
 

@@ -38,7 +38,7 @@ def categoria(request, id):
 
     categoria = get_object_or_404(Categoria, id = id)
 
-    juegos_categoria = Juego.objects.filter(Categoria_id =id)
+    juegos_categoria = Juego.objects.filter(categoria_id=id)
 
     data = {
         'categoria' : categoria,

@@ -37,6 +37,7 @@ LOGOUT_REDIRECT_URL = '/'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'GigaGames',
+    'cart',
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.auth',
@@ -74,6 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'cart.context_processor.cart',
             ],
         },
     },
