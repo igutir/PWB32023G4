@@ -6,7 +6,6 @@ urlpatterns = [
 
     path('', home, name="home"),
     path('explorar/', explorar, name="explorar"),
-    #path('categoria/', categoria, name="categoria"),
     path('categoria/<int:id>', categoria, name="categoria"),
 
     ##Paginas para el pokemon

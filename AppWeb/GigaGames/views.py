@@ -184,11 +184,14 @@ def editar_perfil(request):
         form_usuario = ActualizarUsuarioForm(request.POST, instance=request.user)
         form_perfil = ActualizarPerfilForm(request.POST, instance=request.user.perfil)
 
+        if form_usuario.is_valid or form_perfil.is_valid:
+            print(form_usuario)
+            print(form_perfil)
+
         if form_usuario.is_valid and form_perfil.is_valid:
             
             form_usuario.save()
             form_perfil.save()
-
 
             return redirect(to="editar_perfil")
         else:
