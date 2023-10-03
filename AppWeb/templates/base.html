@@ -53,6 +53,17 @@
                             <li><a class="dropdown-item" href="{% url 'mantenedor_juegos' %}">Mantenedor Juegos</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown me-auto">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            APIS Propias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'lista_juegos' %}">Api Juegos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lista_categorias' %}">Api Categorias</a></li>
+                        </ul>
+                    </li>
                     {% endif %}
 
 
