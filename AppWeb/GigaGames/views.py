@@ -7,10 +7,6 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 
-from django.contrib.auth.forms import UserChangeForm
-
-from django.views.generic import UpdateView
-
 from django.urls import reverse_lazy
 
 from .forms import JuegoForm, ActualizarUsuarioForm, ActualizarPerfilForm
@@ -22,9 +18,6 @@ import requests
 
 
 def home(request):
-
-    # messages.success(request, "msj")
-    #request.session["mensaje"] = "Hola"
 
     juegos_carrusel = Juego.objects.filter(imagen_carrusel__startswith="cover/carrusel/")
 
@@ -59,20 +52,12 @@ def explorar(request):
     return render(request, "explorar.html", data)
 
 
-
-
-
 ##Paginas para el pokemon
 def pokedex_api(request):
     return render(request, 'pokedex_api.html')
 
 def quepokemoneres(request):
     return render(request, 'quepokemoneres.html')
-
-
-
-
-
 
 def juego(request, id):
 
@@ -183,10 +168,6 @@ def editar_perfil(request):
        
         form_usuario = ActualizarUsuarioForm(request.POST, instance=request.user)
         form_perfil = ActualizarPerfilForm(request.POST, instance=request.user.perfil)
-
-        if form_usuario.is_valid or form_perfil.is_valid:
-            print(form_usuario)
-            print(form_perfil)
 
         if form_usuario.is_valid and form_perfil.is_valid:
             

@@ -1,0 +1,36 @@
+Tener en cuenta las siguientes consideraciones:
+
+BASE DE DATOS, TABLAS Y DATOS:
+- Para el desarrollo de este proyecto se utilizó SQLite, integrado en el proyecto, por lo que las tablas y los datos de las mismas están contenidas dentro del proyecto en el archivo "db.sqlite3"
+    - Para revisar el contenido de la base de datos es necesaria la extensión de SQLite en Visual Studio Code
+
+APLICACIONES Y DEPENDENCIAS:
+- Para la correcta ejecución de esta aplicación es necesario ejecutar en el directorio Appweb el siguiente comando "pip install -r requirements.txt"
+
+USUARIOS:
+- El usuario administrador tiene acceso a los mantenedores y a las url de las apis:
+    - user: admin
+    - pass: 123456789
+
+- El usuario normal tiene acceso a su perfil para modificar sus datos y cambiar su contraseña.
+    - user: admin
+    - pass: 123456789
+    - email: ffiebig@prueba.cl (En caso de querer recuperar la contraseña)
+
+RECUPERAR CONTRASEÑA:
+- El recuperar contraseña ocurre enviando un "email" por consola. Estos emails quedan en la ruta del proyecto Appweb/sent_emails como un archivo de texto.
+
+APIS:
+- Apis propias:
+    - Tabla Juegos
+    - Tabla Categorias
+
+- Apis externas:
+    - Recaptcha (Login)
+    - PokeApi (Pokedex y "Que Pokemon eres")
+
+REPOSITORIO:
+https://github.com/igutir/PWB32023G4
+
+
+
