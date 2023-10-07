@@ -4,13 +4,13 @@
 
 {% block contenido %}
 
-<br>
-    <div class="d-flex justify-content-center">
-        <h1>
-            Registrar usuario
-        </h1>
-    </div>
-<br>
+
+<div class="d-flex m-4 ps-4">
+    <h1>
+        Registrar usuario
+    </h1>
+</div>
+
 
 <div class="d-flex justify-content-center">
     <div class="row">
@@ -38,8 +38,13 @@
             </div>
 
             <hr class="my-4">
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary m-2">Registrar usuario</button>
+
+            <div class="d-flex justify-content-center m-2">
+
+                    <a href="{% url 'home' %}" class="btn btn-secondary m-2">Atrás</a>
+
+                    <button type="submit" class="btn btn-primary m-2">Registrar usuario</button>
+
             </div>
         </form>
         <hr class="my-4">

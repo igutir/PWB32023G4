@@ -13,7 +13,7 @@ USUARIOS:
     - pass: 123456789
 
 - El usuario normal tiene acceso a su perfil para modificar sus datos y cambiar su contraseña.
-    - user: admin
+    - user: Felipe
     - pass: 123456789
     - email: ffiebig@prueba.cl (En caso de querer recuperar la contraseña)
 

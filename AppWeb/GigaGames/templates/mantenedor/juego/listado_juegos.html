@@ -20,14 +20,11 @@ function eliminarJuego(id){
 }
 </script>
 
-
-<br>
-    <div class="container">
-        <h1>
-            Juegos registrados:
-        </h1>
-    </div>
-<br>
+<div class="d-flex m-4 ps-4">
+    <h1>
+        Juegos registrados:
+    </h1>
+</div>
 
 <div class="d-flex justify-content-center mx-auto" style="max-width: 1000px;">
     <table class="table table-striped">
@@ -50,7 +47,7 @@ function eliminarJuego(id){
                 <td>{{ juego.nombre }}</td>
                 <td>{{ juego.precio }}</td>
                 <td>{{ juego.stock }}</td>
-                <td>{{ juego.Categoria }}</td>
+                <td>{{ juego.categoria }}</td>
                 <td>{{ juego.compania }}</td>
                 <td align="center"><a href="{% url 'modificar_juego' idjuego=juego.id %}" class="btn btn-warning">M</a></td>
                 <td align="center"><a href="#" onclick="eliminarJuego('{{ juego.id }}')" class="btn btn-danger">E</a></td>

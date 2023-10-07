@@ -4,14 +4,11 @@
 
 {% block contenido %}
 
-
-<br>
-    <div class="container">
-        <h1>
-            Carrito de compras
-        </h1>
-    </div>
-<br>
+<div class="d-flex m-4 ps-4">
+    <h1>
+        Carrito de compras
+    </h1>
+</div>
 
 <div class="d-flex justify-content-center mx-auto" style="max-width: 1000px;">
     <table class="table table-striped">
@@ -20,6 +17,8 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">+1</th>
+                <th scope="col">-1</th>
             </tr>
         </thead>
         <tbody>
@@ -27,15 +26,15 @@
                 {% for key, value in request.session.cart.items %}
                 <tr>
                     <td>{{ value.nombre }}</td>
-                    <td>{{ value.precio }}</td>
+                    <td>${{ value.precio }}</td>
                     <td>{{ value.cantidad }}</td>
-                    <td align="center"><a href="{% url 'agregar_cart' value.id_juego %}" class="btn btn-success">+</a></td>
-                    <td align="center"><a href="{% url 'disminuir_cart' value.id_juego %}" class="btn btn-danger">-</a></td>
+                    <td><a href="{% url 'agregar_cart' value.id_juego %}" class="btn btn-success">+</a></td>
+                    <td><a href="{% url 'disminuir_cart' value.id_juego %}" class="btn btn-danger">-</a></td>
                 </tr>
                 {% endfor %}
             {% else %}
                 <tr>
-                    <td colspan="3">
+                    <td colspan="5">
                         <div class="alert alert-danger text-center">
                             No hay productos en el carrito
                         </div>
@@ -43,22 +42,19 @@
                 </tr>
             {% endif %}
                 <tr>
-                    <th scope="row">
-                        Total:
-                    </th>
-                    <td colspan="2">
-                        $ {{cart.obtener_total}}
-                    </td>
+                    <th scope="row">Total:</th>
+                    <td>${{cart.obtener_total}}</td>
+                    <td>{{cart.obtener_juegos_en_carrito}}</td>
                 </tr>
         </tbody>
         </table>
-        
-        <hr>
-
-        <div class="d-flex justify-content-center">
-            <div class="col-6"><a href="{% url 'limpiar_cart' %}" class="btn btn-success">Limpiar Carrito</a></div>
-        </div>
 
     </div>
 </div>
+
+<div class="d-flex justify-content-center">
+    <a href="{% url 'home' %}" class="btn btn-secondary m-2">Atrás</a>
+    <a href="{% url 'limpiar_cart' %}" class="btn btn-success m-2">Limpiar Carrito</a>
+</div>
+
 {% endblock %}

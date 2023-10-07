@@ -13,6 +13,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h3 class="card-title">{{ juego.nombre }}</h3>
+                    <h5 class="card-text">{{ juego.compania }}</h5>
                     <h4 class="card-subtitle">Precio: ${{ juego.precio }}</h4>
                     <p class="card-text">{{ juego.descripcion }}</p>
 
@@ -29,6 +30,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    <a href="{% url 'categoria' id=juego.categoria.id %}" class="btn btn-primary m-2">Volver a categoría</a>
 </div>
 
 {% endblock %}
