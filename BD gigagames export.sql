@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - sábado-octubre-07-2023   
+-- Archivo creado  - sï¿½bado-octubre-07-2023   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table AUTH_GROUP
@@ -1663,7 +1663,7 @@ REM INSERTING into GIGAGAMES.AUTH_USER_USER_PERMISSIONS
 SET DEFINE OFF;
 REM INSERTING into GIGAGAMES.DJANGO_ADMIN_LOG
 SET DEFINE OFF;
-Insert into GIGAGAMES.DJANGO_ADMIN_LOG (ID,ACTION_TIME,OBJECT_REPR,ACTION_FLAG,CONTENT_TYPE_ID,USER_ID) values ('1',to_timestamp('07/10/23 04:56:36,878883000','DD/MM/RR HH24:MI:SSXFF'),'Acción','1','2','1');
+Insert into GIGAGAMES.DJANGO_ADMIN_LOG (ID,ACTION_TIME,OBJECT_REPR,ACTION_FLAG,CONTENT_TYPE_ID,USER_ID) values ('1',to_timestamp('07/10/23 04:56:36,878883000','DD/MM/RR HH24:MI:SSXFF'),'AcciÃ³n','1','2','1');
 Insert into GIGAGAMES.DJANGO_ADMIN_LOG (ID,ACTION_TIME,OBJECT_REPR,ACTION_FLAG,CONTENT_TYPE_ID,USER_ID) values ('2',to_timestamp('07/10/23 04:56:47,607241000','DD/MM/RR HH24:MI:SSXFF'),'Estrategia','1','2','1');
 Insert into GIGAGAMES.DJANGO_ADMIN_LOG (ID,ACTION_TIME,OBJECT_REPR,ACTION_FLAG,CONTENT_TYPE_ID,USER_ID) values ('3',to_timestamp('07/10/23 04:56:56,189805000','DD/MM/RR HH24:MI:SSXFF'),'Indie','1','2','1');
 Insert into GIGAGAMES.DJANGO_ADMIN_LOG (ID,ACTION_TIME,OBJECT_REPR,ACTION_FLAG,CONTENT_TYPE_ID,USER_ID) values ('4',to_timestamp('07/10/23 04:57:02,219773000','DD/MM/RR HH24:MI:SSXFF'),'Supervivencia','1','2','1');
@@ -1728,7 +1728,7 @@ SET DEFINE OFF;
 Insert into GIGAGAMES.DJANGO_SESSION (SESSION_KEY,EXPIRE_DATE) values ('5pma779jwwgsxvrctlhrg5ubfcsefyrt',to_timestamp('21/10/23 07:23:02,967962000','DD/MM/RR HH24:MI:SSXFF'));
 REM INSERTING into GIGAGAMES.GIGAGAMES_CATEGORIA
 SET DEFINE OFF;
-Insert into GIGAGAMES.GIGAGAMES_CATEGORIA (ID,NOMBRE) values ('1','Acción');
+Insert into GIGAGAMES.GIGAGAMES_CATEGORIA (ID,NOMBRE) values ('1','AcciÃ³n');
 Insert into GIGAGAMES.GIGAGAMES_CATEGORIA (ID,NOMBRE) values ('2','Estrategia');
 Insert into GIGAGAMES.GIGAGAMES_CATEGORIA (ID,NOMBRE) values ('3','Indie');
 Insert into GIGAGAMES.GIGAGAMES_CATEGORIA (ID,NOMBRE) values ('4','Supervivencia');
